@@ -1,9 +1,15 @@
-# MERN Starter
-Starter/seed project for MongoDB, Express, React, Node full-stack JavaScript apps.
+CD > client and do npm install
+CD > server and do npm install
 
-## TODO
-- Finish user profile pages (edit, view profile, etc.)
-- Add more cutesy front-end components for rapid prototyping
+Install mongoDB
+Create floderls like below in any directory C/D
 
-## Longer-term Goals
-- Social login integration
+C:\>md data
+C:\md data\db
+
+Navigate to mongobd path and execude the below command
+in one command
+C:\mongodb\bin>mongod.exe --dbpath "C:\data\db" 
+in another command 
+C:\mongodb\bin>mongo.exe ( which is for mongoDB cmd to run all db queries)
+
