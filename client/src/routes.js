@@ -2,23 +2,23 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 // Import miscellaneous routes and other requirements
-import App from './components/app';
+import App from './containers/app';
 import NotFoundPage from './components/pages/not-found-page';
 
 // Import static pages
 import HomePage from './components/pages/home-page';
 
 // Import authentication related pages
-import Register from './components/auth/register';
-import Login from './components/auth/login';
-import Logout from './components/auth/logout';
-import ForgotPassword from './components/auth/forgot_password';
-import ResetPassword from './components/auth/reset_password';
+import Register from './containers/auth/register';
+import Login from './containers/auth/login';
+import Logout from './containers/auth/logout';
+import ForgotPassword from './containers/auth/forgot_password';
+import ResetPassword from './containers/auth/reset_password';
 
 // Import dashboard pages
-import Dashboard from './components/dashboard/dashboard';
-// Import higher order components
-import RequireAuth from './components/auth/require_auth';
+import Dashboard from './containers/dashboard/dashboard';
+// Import higher order containers
+import RequireAuth from './containers/auth/require_auth';
 
 export default (
   <Route path="/" component={App}>

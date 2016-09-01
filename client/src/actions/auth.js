@@ -49,37 +49,6 @@ export function logoutUser(error) {
   }
 }
 
-export function getForgotPasswordToken({ email }) {
-  return function(dispatch) {
-    axios.post(`${API_URL}/auth/forgot-password`, { email })
-    .then(response => {
-      dispatch({
-        type: FORGOT_PASSWORD_REQUEST,
-        payload: response.data.message
-      });
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
-    });
-  }
-}
-
-export function resetPassword( token, { password }) {
-  return function(dispatch) {
-    axios.post(`${API_URL}/auth/reset-password/${token}`, { password })
-    .then(response => {
-      dispatch({
-        type: RESET_PASSWORD_REQUEST,
-        payload: response.data.message
-      });
-      // Redirect to login page on successful password reset
-      browserHistory.push('/login');
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
-    });
-  }
-}
 
 export function protectedTest() {
   return function(dispatch) {
