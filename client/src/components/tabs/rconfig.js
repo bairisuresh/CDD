@@ -2,17 +2,17 @@
 
 import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-class Plog extends React.Component {
+class Rconfig extends React.Component {
   render() {
     // const cellcolor = {backgroundColor: #008000}
     var products = [{
-      id: 1,
+      id: 1111,
       name: "Item name 1",
-      price: 100
+      price: 200
       },{
-          id: 2,
+          id: 2222,
           name: "Item name 2",
-          price: 100
+          price: 2222100
       }];
       function priceFormatter(cell, row){
         return '<div style="{{backgroundColor: #008000}}">true</div> ';
@@ -39,9 +39,9 @@ class Plog extends React.Component {
   }
 }
 
-Plog.displayName = 'Plog';
+Rconfig.displayName = 'Rconfig';
 
 // Uncomment properties you need
 // AccordionComponent.propTypes = {};
 
-export default Plog;
+export default Rconfig;

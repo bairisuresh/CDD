@@ -28,8 +28,6 @@ export default (
     <Route path="logout" component={Logout} />
     <Route path="forgot-password" component={ForgotPassword} />
     <Route path="reset-password/:resetToken" component={ResetPassword} />
-
-
     <Route path="dashboard">
       <IndexRoute component={RequireAuth(Dashboard)} />
     </Route>

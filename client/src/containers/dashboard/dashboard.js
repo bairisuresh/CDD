@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap/lib'
 import Plog from '../../components/tabs/plog'
+import Rconfig from '../../components/tabs/rconfig'
 class Dashboard extends Component {
 
   constructor(props) {
@@ -16,7 +17,9 @@ class Dashboard extends Component {
         <Tab eventKey={1} title="Tab 1">
             <Plog />
         </Tab>
-        <Tab eventKey={2} title="Tab 2">Tab 2 content</Tab>
+        <Tab eventKey={2} title="Tab 2">
+          <Rconfig />
+        </Tab>
       </Tabs>
     );
   }
