@@ -25,7 +25,6 @@ class Login extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
     return (
       <div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>

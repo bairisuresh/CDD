@@ -1,11 +1,12 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FORGOT_PASSWORD_REQUEST, RESET_PASSWORD_REQUEST, PROTECTED_TEST } from '../actions/types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, PROTECTED_TEST } from '../actions/types';
 
 const INITIAL_STATE = { error: '', message: '', content: '', authenticated: false };
 
 export default function (state = INITIAL_STATE, action) {
   switch(action.type) {
     case AUTH_USER:
-      return { ...state, error: '', message: '', authenticated: true };
+      console.log(action.payload)
+      return { ...state, error: '', message: '', authenticated: true, content: action.payload };
     case UNAUTH_USER:
       return { ...state, authenticated: false };
     case AUTH_ERROR:

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import cookie from 'react-cookie';
 import { API_URL, CLIENT_ROOT_URL, errorHandler } from './index';
-import { AUTH_USER, AUTH_ERROR,  UNAUTH_USER, FORGOT_PASSWORD_REQUEST, RESET_PASSWORD_REQUEST, PROTECTED_TEST } from './types';
+import { AUTH_USER, AUTH_ERROR,  UNAUTH_USER, PROTECTED_TEST } from './types';
 
 //================================
 // Authentication actions
@@ -15,7 +15,10 @@ export function loginUser({ email, password }) {
     .then(response => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
-      dispatch({ type: AUTH_USER });
+      dispatch({
+        type: AUTH_USER,
+        payload: response.data.user
+      });
       window.location.href = CLIENT_ROOT_URL + '/dashboard';
     })
     .catch((error) => {
