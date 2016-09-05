@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap/lib'
 import Plog from '../../components/tabs/plog'
@@ -8,18 +9,33 @@ class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.content)
+    console.log("dashborad",this.props.content)
     // this.props.protectedTest();
+    this.rlogTabClick = this.rlogTabClick.bind(this);
+    this.plogTabClick = this.plogTabClick.bind(this);
   }
-
+  plogTabClick(){
+    console.log("fdfsfsdf")
+    this.props.actions.fetchPlog({role:content.role,tablcick:true});
+  }
+  rlogTabClick(){
+    this.props.actions.fetchRlog({role:content.role,tablcick:true});
+  }
+  handleSelect(key) {
+    alert('selected ' + key);
+    // this.setState({key});
+  }
   render() {
+    let {plogdata, rlogdata, content} = this.props
+    const plogProps = {content,plogdata};
+    const rlogProps = {content,rlogdata};
     return (
-      <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey={1} id="uncontrolled-tab-example" onSelect={this.handleSelect}>
         <Tab eventKey={1} title="Tab 1">
-            <Plog />
+            <Plog {...plogProps}/>
         </Tab>
         <Tab eventKey={2} title="Tab 2">
-          <Rconfig />
+          <Rconfig {...rlogProps} />
         </Tab>
       </Tabs>
     );
@@ -27,7 +43,12 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  return { content: state.auth.content };
+  console.log("in state", state);
+  return { content: state.auth.content,plogdata:state.auth.plogdata, rlogdata:state.auth.rlogdata };
+}
+function mapDispathToProps(dispatch,props){
+  var actions = require('../../actions/index');
+  return {actions : bindActionCreators(actions,dispatch)};
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps,mapDispathToProps)(Dashboard);

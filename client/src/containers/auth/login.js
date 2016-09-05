@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { loginUser } from '../../actions/auth';
 
 const form = reduxForm({
@@ -9,6 +9,10 @@ const form = reduxForm({
 });
 
 class Login extends Component {
+  constructor (props, context) {
+    super(props, context);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
   handleFormSubmit(formProps) {
     this.props.loginUser(formProps);
   }
@@ -22,7 +26,11 @@ class Login extends Component {
       );
     }
   }
-
+  // componentWillReceiveProps(){
+  //   if(this.props.authenticated){
+  //       browserHistory.push('/dashboard');
+  //   }
+  // }
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -49,7 +57,8 @@ function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
     message: state.auth.message,
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    content: state.auth.content
   };
 }
 

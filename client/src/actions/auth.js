@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import cookie from 'react-cookie';
+import { fetchPlog } from './index';
 import { API_URL, CLIENT_ROOT_URL, errorHandler } from './index';
 import { AUTH_USER, AUTH_ERROR,  UNAUTH_USER, PROTECTED_TEST } from './types';
 
@@ -19,7 +20,11 @@ export function loginUser({ email, password }) {
         type: AUTH_USER,
         payload: response.data.user
       });
-      window.location.href = CLIENT_ROOT_URL + '/dashboard';
+      //TODO: Call plog and rlog dispatches so that we get data for next screen
+      // debugger;
+    return dispatch(fetchPlog({role:response.data.user.role, tablcick:true}));
+
+      // window.location.href = CLIENT_ROOT_URL + '/dashboard';
     })
     .catch((error) => {
       errorHandler(dispatch, error.response, AUTH_ERROR)

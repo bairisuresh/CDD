@@ -1,7 +1,8 @@
 import axios from 'axios';
 import cookie from 'react-cookie';
+import { browserHistory } from 'react-router';
 import { logoutUser } from './auth';
-import { STATIC_ERROR, FETCH_USER } from './types';
+import { STATIC_ERROR, FETCH_USER, FETCH_PLOG, FETCH_RLOG } from './types';
 export const API_URL = 'http://localhost:3000/api';
 export const CLIENT_ROOT_URL = 'http://localhost:8080';
 
@@ -19,8 +20,43 @@ export function fetchUser(uid) {
         type: FETCH_USER,
         payload: response.data.user
       });
+
     })
     .catch(response => dispatch(errorHandler(response.data.error)))
+  }
+}
+
+export function fetchPlog(data) {
+  return function(dispatch) {
+    axios.get('src/data/plog.json')
+    .then(response => {
+      console.log("plog", response.data)
+      dispatch({
+        type: FETCH_PLOG,
+        payload: response.data
+      });
+      if(!data.tabclick)
+        dispatch(fetchRlog(data));
+    })
+    .fail(response => {
+      dispatch(errorHandler(response.data.error))
+    })
+  }
+}
+
+export function fetchRlog(data) {
+  return function(dispatch) {
+    axios.get('src/data/rlog.json')
+    .then(response => {
+      console.log("rlog", response.data)
+      dispatch({
+        type: FETCH_RLOG,
+        payload: response.data
+      });
+      if(!data.tabclick)
+        browserHistory.push('/dashboard');
+    })
+    .catch(response => { dispatch(errorHandler(response.data.error))})
   }
 }
 
