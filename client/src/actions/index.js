@@ -30,7 +30,6 @@ export function fetchPlog(data) {
   return function(dispatch) {
     axios.get('src/data/plog.json')
     .then(response => {
-      console.log("plog", response.data)
       dispatch({
         type: FETCH_PLOG,
         payload: response.data
@@ -38,7 +37,7 @@ export function fetchPlog(data) {
       if(!data.tabclick)
         dispatch(fetchRlog(data));
     })
-    .fail(response => {
+    .catch(response => {
       dispatch(errorHandler(response.data.error))
     })
   }
@@ -48,7 +47,6 @@ export function fetchRlog(data) {
   return function(dispatch) {
     axios.get('src/data/rlog.json')
     .then(response => {
-      console.log("rlog", response.data)
       dispatch({
         type: FETCH_RLOG,
         payload: response.data

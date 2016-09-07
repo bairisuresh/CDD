@@ -11,19 +11,18 @@ class Dashboard extends Component {
     super(props);
     console.log("dashborad",this.props.content)
     // this.props.protectedTest();
-    this.rlogTabClick = this.rlogTabClick.bind(this);
-    this.plogTabClick = this.plogTabClick.bind(this);
-  }
-  plogTabClick(){
-    console.log("fdfsfsdf")
-    this.props.actions.fetchPlog({role:content.role,tablcick:true});
-  }
-  rlogTabClick(){
-    this.props.actions.fetchRlog({role:content.role,tablcick:true});
+    this.handleSelect = this.handleSelect.bind(this);
+
   }
   handleSelect(key) {
-    alert('selected ' + key);
-    // this.setState({key});
+    const { actions, content } = this.props;
+    if(key === 1){
+      alert('selected ' + key);
+      actions.fetchPlog({role:content.role,tablcick:true});
+    }else {
+      alert('selected ' + key);
+      actions.fetchRlog({role:content.role,tablcick:true});
+    }
   }
   render() {
     let {plogdata, rlogdata, content} = this.props
