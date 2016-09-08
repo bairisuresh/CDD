@@ -13,3 +13,4 @@ C:\mongodb\bin>mongod.exe --dbpath "C:\data\db"
 in another command 
 C:\mongodb\bin>mongo.exe ( which is for mongoDB cmd to run all db queries)
 
+http://davidkpiano.github.io/react-redux-form/docs/guides/compare-redux-form.html
